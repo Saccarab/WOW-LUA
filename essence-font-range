@@ -1,0 +1,51 @@
+-- trigger
+
+function()
+    WA_rangecheck_global =  WA_rangecheck_global or GetTime()
+    if GetTime() - WA_rangecheck_global > 1 then
+        WA_rangecheck_global = GetTime()
+        if IsInGroup() then
+            WA_rangecheckcount_global = 0
+            
+            local grouptype = (IsInRaid() and "raid") or (IsInGroup() and "party")
+            for i = 1,GetNumGroupMembers() do
+                
+                local dist = math.sqrt(UnitDistanceSquared(grouptype..i))
+                if not UnitIsUnit(grouptype..i, "player") and  dist <= 25 then
+                    
+                    if UnitHealth(grouptype..i) < UnitHealthMax(grouptype..i) then
+                        
+                        WA_rangecheckcount_global = WA_rangecheckcount_global + 1
+                        
+                    end
+                end
+            end
+            if WA_rangecheckcount_global >= 6 then
+                return true
+            end
+        end
+    end
+end
+
+--untrigger
+
+function()
+    if (WA_rangecheckcount_global or 0) < 5 then
+        return true
+    end
+    
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
