@@ -1,10 +1,9 @@
 
 
 
-
 --arcane->fire->frost....-> rotation 5~ seconds between each element 20 sec buff uptime
 
-local mod,CL=BigWigs:NewBoss("Calamir",1015);
+local mod,CL=BigWigs:NewBoss("Calamir",-1015,1774);
 if not mod then 
 	return end
 	
@@ -30,8 +29,7 @@ function mod:GetOptions()
 	}
 end
 
-function: mod:OnBossEnable()
-	
+function mod:OnBossEnable()
 	
 	
 	self:Log("SPELL_CAST_SUCCESS", "ArcanoPulse", 218012)
@@ -39,14 +37,17 @@ function: mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ArcaneDesolation", 217986)
 	self:Log("SPELL_CAST_SUCCESS", "WrathfulFlames", 217893)
 	self:Log("SPELL_CAST_SUCCESS", "HowlingGale", 217966)
+	self:Log("SPELL_CAST_SUCCESS", "BurningBombSuccess", 217874)
 	self:Log("SPELL_AURA_APPLIED", "BurningBomb", 217874)
 	self:Log("SPELL_AURA_REMOVED", "BurningBombRemoved", 217874)
-	self:Log("SPELL_AURA_APPLIED", "AncientRageFire", 217563)
-	self:Log("SPELL_AURA_APPLIED", "AncientRageFrost", 217831)
-	self:Log("SPELL_AURA_APPLIED", "AncientRageArcane", 217834)
-	
+	self:Log("SPELL_CAST_SUCCESS", "AncientRageFire", 217563)
+	self:Log("SPELL_CAST_SUCCESS", "AncientRageFrost", 217831)
+	self:Log("SPELL_CAST_SUCCESS", "AncientRageArcane", 217834)
+	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
 	self:RegisterEvent("BOSS_KILL")
 end
+
 
 --[[function mod:OnEngage()
 	
@@ -65,7 +66,7 @@ function mod:AncientRageFire()
 	self:CDBar(218012,51)  --ArcanoPulse
 	self:CDBar(217986,53)  --ArcaneDesolation
 	
-	self:RemoveLog("SPELL_AURA_APPLIED", 217563)
+	self:RemoveLog("SPELL_CAST_SUCCESS", 217563)
 	
 end
 
@@ -78,7 +79,7 @@ function mod:AncientRageFrost()
 	self:CDBar(217874,53);  --BurningBomb
 	self:CDBar(217893,60); --WrathfulFlames
 	
-	self:RemoveLog("SPELL_AURA_APPLIED", 217831)
+	self:RemoveLog("SPELL_CAST_SUCCESS", 217831)
 	
 end
 
@@ -90,10 +91,20 @@ function mod:AncientRageArcane()
 	self:CDBar(217966,53)  --HowlingGale
 	self:CDBar(217919,59)  --IcyComet
 	
-	self:RemoveLog("SPELL_AURA_APPLIED", 217834);
+	self:RemoveLog("SPELL_CAST_SUCCESS", 217834);
 	
 end
 
+function mod:BurningBombSuccess(args)
+	if bBomb==1 then
+		self:CDBar(args.spellId, 12.5)
+		bBomb=2;
+	else
+		self:Bar(args.spellId, 63)
+		bBomb=1;
+	end
+
+end
 
 function mod:BurningBomb(args)
 
@@ -103,13 +114,7 @@ function mod:BurningBomb(args)
 		self:Say(args.spellId)
 	end	
 	
-	if bBomb==1 then
-		self:Bar(args.spellId, 13.6)
-		bBomb=2;
-	else
-		self:Bar(args.spellId, 63)
-		bBomb=1;
-	end
+	
 end
 
 function mod:BurningBombRemoved(args)
@@ -117,35 +122,35 @@ function mod:BurningBombRemoved(args)
 end
 
 function mod:WrathfulFlames(args)
-	self:Bar(args.spellId, 76.4)
+	self:CDBar(args.spellId, 76.4)
 end
 
 
 function mod:ArcanoPulse(args)
-	self:Bar(args.spellId,76.7)
+	self:CDBar(args.spellId,76.7)
 	self:Flash(args.spellId)
 end
 
 function mod:IcyComet(args)
-	self:Bar(args.spellId,76.7)
+	self:CDBar(args.spellId,76.7)
 end
 	
 function mod:ArcaneDesolation(args)
 	if aDesolation==1 then
-		self:Bar(args.spellId, 14)
+		self:CDBar(args.spellId, 12.5)
 		aDesolation=2;
 	else
-		self:Bar(args.spellId, 61.9)
+		self:CDBar(args.spellId, 61.9)
 		aDesolation=1;
 	end
 end
 	
 function mod:HowlingGale(args)
 	if hGale==1 then
-		self:Bar(args.spellId, 14)
+		self:CDBar(args.spellId, 12.5)
 		hGale=2;
 	else
-		self:Bar(args.spellId, 61.9)
+		self:CDBar(args.spellId, 61.9)
 		hGale=1;
 	end
 	
