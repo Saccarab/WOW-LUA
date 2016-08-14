@@ -12,7 +12,7 @@ mod:RegisterEnableMob(109331)
 --mod.otherMenu = 962
 mod.worldBoss = 109331
 
-local bBomb=1;
+local bBomb=1;	
 local hGale=1;
 local aDesolation=1;
 
@@ -42,8 +42,8 @@ function: mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BurningBomb", 217874)
 	self:Log("SPELL_AURA_REMOVED", "BurningBombRemoved", 217874)
 	self:Log("SPELL_AURA_APPLIED", "AncientRageFire", 217563)
-	self:Log("SPELL_AURA_APPLIED", "AncientRageFrost", 217834)
-	self:Log("SPELL_AURA_APPLIED", "AncientRageArcane", 217831)
+	self:Log("SPELL_AURA_APPLIED", "AncientRageFrost", 217831)
+	self:Log("SPELL_AURA_APPLIED", "AncientRageArcane", 217834)
 	
 	self:RegisterEvent("BOSS_KILL")
 end
@@ -53,11 +53,6 @@ end
 	-- //local _, _, _, _, _, duration, expirationTime = UnitBuff("Unit", "Calamir") --fix this
 	--if duration == nil then
 		
-		
-	
-	
-	
-	 
 
 end--]]
 
@@ -83,7 +78,7 @@ function mod:AncientRageFrost()
 	self:CDBar(217874,53);  --BurningBomb
 	self:CDBar(217893,60); --WrathfulFlames
 	
-	self:RemoveLog("SPELL_AURA_APPLIED", 217834)
+	self:RemoveLog("SPELL_AURA_APPLIED", 217831)
 	
 end
 
@@ -95,7 +90,7 @@ function mod:AncientRageArcane()
 	self:CDBar(217966,53)  --HowlingGale
 	self:CDBar(217919,59)  --IcyComet
 	
-	self:RemoveLog("SPELL_AURA_APPLIED", 217831);
+	self:RemoveLog("SPELL_AURA_APPLIED", 217834);
 	
 end
 
