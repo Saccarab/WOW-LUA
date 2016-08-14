@@ -48,7 +48,7 @@ function: mod:OnBossEnable()
 	self:RegisterEvent("BOSS_KILL")
 end
 
-function mod:OnEngage()
+--[[function mod:OnEngage()
 	
 	-- //local _, _, _, _, _, duration, expirationTime = UnitBuff("Unit", "Calamir") --fix this
 	--if duration == nil then
@@ -59,7 +59,7 @@ function mod:OnEngage()
 	
 	 
 
-end
+end--]]
 
 function mod:AncientRageFire()
 
