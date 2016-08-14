@@ -4,7 +4,7 @@
 
 --arcane->fire->frost....-> rotation 5~ seconds between each element 20 sec buff uptime
 
-local mod,CL=BigWigs:NewBoss("Calamir",);
+local mod,CL=BigWigs:NewBoss("Calamir",1015);
 if not mod then 
 	return end
 	
@@ -26,7 +26,7 @@ function mod:GetOptions()
 		{218012, "FLASH"}, -- Arcanopulse
 		--FROST PHASE--
 		217966, -- Howling Gale
-		--Icy Comet(journal spell) missing ID on wowhead or the transcriptor logs
+		217919, --Icy Comet(journal spell) missing ID on wowhead 
 	}
 end
 
