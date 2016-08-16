@@ -57,7 +57,7 @@ end
 
 end--]]
 
-function mod:AncientRageFire()
+function mod:AncientRageFire(args)
 
 	self:CDBar(217893,9);  --WrathfulFlames
 	self:CDBar(217874,17); --BurningBomb
@@ -70,9 +70,9 @@ function mod:AncientRageFire()
 	
 end
 
-function mod:AncientRageFrost()
+function mod:AncientRageFrost(args)
 
-	self:CDBar(217966,2)  --HowlingGale
+	self:CDBar(217966,2)  --HowlingGale	
 	self:CDBar(217919,9)  --IcyComet
 	self:CDBar(218012,26)  --Arcanopulse
 	self:CDBar(217986,28)  --ArcaneDesolation
@@ -83,7 +83,7 @@ function mod:AncientRageFrost()
 	
 end
 
-function mod:AncientRageArcane()
+function mod:AncientRageArcane(args)
 
 	self:CDBar(217986,2)  --ArcaneDesolation
 	self:CDBar(217874,27);  --BurningBomb
@@ -100,7 +100,7 @@ function mod:BurningBombSuccess(args)
 		self:CDBar(args.spellId, 12.5)
 		bBomb=2;
 	else
-		self:Bar(args.spellId, 63)
+		self:CDBarBar(args.spellId, 63)
 		bBomb=1;
 	end
 
@@ -114,11 +114,10 @@ function mod:BurningBomb(args)
 		self:Say(args.spellId)
 	end	
 	
-	
 end
 
 function mod:BurningBombRemoved(args)
-	self:CloseProximity(args.spellId, 10);
+	self:CloseProximity(args.spellId);
 end
 
 function mod:WrathfulFlames(args)
