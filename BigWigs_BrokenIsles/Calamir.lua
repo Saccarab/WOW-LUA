@@ -10,7 +10,7 @@ if not mod then
 mod:RegisterEnableMob(109331)
 --mod.otherMenu = 962
 mod.worldBoss = 109331
-
+--
 local bBomb=1;	
 local hGale=1;
 local aDesolation=1;
