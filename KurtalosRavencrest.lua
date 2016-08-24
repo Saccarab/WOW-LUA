@@ -24,7 +24,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
   self:Log("SPELL_CAST_START", "DarkBlast", 198820)
   self:Log("SPELL_CAST_START", "WhirlingBlade", 198641)
   self:Log("SPELL_CAST_START", "ShadowBoltValley", 202019)
