@@ -7,7 +7,7 @@ mod:RegisterEnableMob(98965, 98970)
 --------------------------------------------------------------------------------
 -- Locals
 --
-local ShadowBoltCount = 1;
+local ShadowBoltCount = 1
 --------------------------------------------------------------------------------
 -- Initialization
 --
@@ -37,6 +37,7 @@ self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 end
 
 function mod:OnEngage()
+  ShadowBoltCount = 1;
   self:CDBar(198635,5.5)
   self:CDBar(198641,12)
 end
