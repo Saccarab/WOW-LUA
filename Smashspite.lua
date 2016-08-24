@@ -31,7 +31,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	FelVomitCD = 35
+  FelVomitCD = 35
   self:Bar(198079, 5.8)
   self:Bar(198073, 13.1)
 	self:Bar(198446, FelVomitCD)
