@@ -1,2 +1,2 @@
 # WOW-LUA
-world of warcraft weak auras/addons initials
+world of warcraft weak auras & addon initials (irrelevant)
